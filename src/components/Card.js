@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, ImageBackground} from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  ImageBackground,
+} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   faBed,
@@ -14,6 +20,15 @@ import {
 class Card extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      like: false,
+    };
+  }
+
+  handleLike = () => {
+    this.setState({
+      like: !this.state.like,
+    });
   }
 
   render() {
@@ -59,9 +74,15 @@ class Card extends Component {
           </View>
           <View style={styles.footerCard}>
             <Text style={styles.text}>${this.props.element.price}</Text>
-            <View style={styles.hearContainer}>
-              <FontAwesomeIcon color="white" size={15} icon={faHeart} />
-            </View>
+            <TouchableOpacity
+              onPress={this.handleLike}
+              style={styles.hearContainer}>
+              <FontAwesomeIcon
+                color={this.state.like ? 'red' : 'white'}
+                size={15}
+                icon={faHeart}
+              />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
