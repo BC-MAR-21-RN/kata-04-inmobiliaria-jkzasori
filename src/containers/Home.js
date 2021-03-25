@@ -29,7 +29,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
   homeConatiner: {
     flex: 1,
-  }
+  },
 });
 
 export default Home;

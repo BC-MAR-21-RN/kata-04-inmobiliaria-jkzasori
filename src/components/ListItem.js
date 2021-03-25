@@ -1,14 +1,26 @@
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, FlatList, Text} from 'react-native';
 import Card from './Card';
 
 class ListItem extends Component {
+  constructor(props) {
+    super(props);
+  }
+  listCard({item}) {
+    return (
+      <View>
+        <Card element={item} />
+      </View>
+    );
+  }
   render() {
     return (
       <View style={styles.listContainer}>
-        <Card />
-        <Card />
-        <Card />
+        <FlatList
+          data={this.props.data}
+          renderItem={this.listCard}
+          keyExtractor={item => item.id}
+        />
       </View>
     );
   }

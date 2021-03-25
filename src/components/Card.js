@@ -12,6 +12,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 class Card extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <View style={styles.card}>
@@ -20,26 +24,28 @@ class Card extends Component {
             style={styles.image}
             imageStyle={{borderRadius: 15}}
             source={{
-              uri:
-                'https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+              uri: `${this.props.element.img}`,
             }}>
             <Text style={styles.evaluation}>
-              <FontAwesomeIcon color={'#eeba00'} size={16} icon={faStar} /> 4.7
+              <FontAwesomeIcon color={'#eeba00'} size={16} icon={faStar} />{' '}
+              {this.props.element.stars}
             </Text>
           </ImageBackground>
         </View>
         <View style={styles.containerText}>
-          <Text style={styles.text}>The Willows</Text>
+          <Text style={styles.text}>{this.props.element.name}</Text>
           <Text style={styles.addres}>
-            <FontAwesomeIcon style={styles.icons} icon={faMapMarkerAlt} /> 3517
-            W. Gray St. Utica
+            <FontAwesomeIcon style={styles.icons} icon={faMapMarkerAlt} />{' '}
+            {this.props.element.address}
           </Text>
           <View style={styles.roomSpace}>
             <Text style={styles.textBody}>
-              <FontAwesomeIcon size={20} style={styles.icons} icon={faBed} /> 3
+              <FontAwesomeIcon size={20} style={styles.icons} icon={faBed} />{' '}
+              {this.props.element.rooms}
             </Text>
             <Text style={styles.textBody}>
-              <FontAwesomeIcon size={20} style={styles.icons} icon={faBath} /> 2
+              <FontAwesomeIcon size={20} style={styles.icons} icon={faBath} />{' '}
+              {this.props.element.bathrooms}
             </Text>
             <Text style={styles.textBody}>
               <FontAwesomeIcon size={16} style={styles.icons} icon={faExpand} />
@@ -48,11 +54,11 @@ class Card extends Component {
                 style={styles.icons}
                 icon={faArrowsAltV}
               />{' '}
-              230 ft2
+              {this.props.element.area}
             </Text>
           </View>
           <View style={styles.footerCard}>
-            <Text style={styles.text}>$440/m</Text>
+            <Text style={styles.text}>${this.props.element.price}</Text>
             <View style={styles.hearContainer}>
               <FontAwesomeIcon color="white" size={15} icon={faHeart} />
             </View>
