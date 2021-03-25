@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
-import ListItem from '../components/ListItem';
+import {ListItem, Search} from '../components';
+
 import data from '../share/data';
 
 class Home extends Component {
@@ -17,9 +18,24 @@ class Home extends Component {
     });
   }
 
+  filterData = param => {
+    if (param.length > 0) {
+      this.setState({
+        dataInmobili: this.state.dataInmobili.filter(item =>
+          item.name.toLowerCase().includes(param),
+        ),
+      });
+    } else {
+      this.setState({
+        dataInmobili: data,
+      });
+    }
+  };
+
   render() {
     return (
       <View style={styles.homeConatiner}>
+        <Search filter={this.filterData} />
         <ListItem data={this.state.dataInmobili} />
       </View>
     );
@@ -29,6 +45,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
   homeConatiner: {
     flex: 1,
+    backgroundColor: '#e5e5e5',
   },
 });
 
