@@ -29,7 +29,7 @@ class Card extends Component {
     this.setState({
       like: !this.state.like,
     });
-  }
+  };
 
   render() {
     return (
